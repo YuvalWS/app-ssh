@@ -28,7 +28,7 @@ RUN sed -i 's/^#[[:space:]]*\(include "\/usr\/share\/nano\/\*\.nanorc".*\)/\1/' 
 RUN sed -i "s|/bin/sh|/bin/bash|" /etc/passwd
 
 # Home Assistant CLI
-ARG CLI_VERSION=5.5.0
+ARG CLI_VERSION=5.6.0
 ARG TARGETARCH
 RUN \
     if [ -z "${TARGETARCH}" ]; then \
