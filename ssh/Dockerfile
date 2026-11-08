@@ -54,7 +54,7 @@ RUN \
     ttyd -i /tmp/ttyd.sock true & \
     curl -fsS --compressed --retry 10 --retry-all-errors --retry-delay 1 \
         --unix-socket /tmp/ttyd.sock -o /usr/share/ttyd/index.html http://localhost/ \
-    && { echo "<script>"; cat /usr/share/ttyd/key-bar.js; echo "</script>"; } \
+    && { echo "<script>"; cat /usr/share/ttyd/key-bar.js /usr/share/ttyd/keyboard-fit.js; echo "</script>"; } \
         >> /usr/share/ttyd/index.html
 
 LABEL \
