@@ -7,4 +7,10 @@
 bashio::log.info "Starting Web Terminal..."
 cd /root || bashio::exit.nok "Can't find root folder!"
 
-exec ttyd --writable -p 8099 -t screenReaderMode=true tmux -u new -A -s homeassistant bash -l
+options=()
+if bashio::config.true 'web_terminal.mobile_key_bar'; then
+    # ttyd's page with the touch key bar added (built in the Dockerfile)
+    options+=(-I /usr/share/ttyd/index.html)
+fi
+
+exec ttyd --writable -p 8099 "${options[@]}" -t screenReaderMode=true tmux -u new -A -s homeassistant bash -l

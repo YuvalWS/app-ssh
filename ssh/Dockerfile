@@ -47,6 +47,16 @@ RUN \
 # Copy data
 COPY rootfs /
 
+# Web terminal page: ttyd's own page with the touch key bar script appended.
+# The page is built into the ttyd binary, so start ttyd on a socket file just
+# long enough to download it. ttyd stops when this build step ends.
+RUN \
+    ttyd -i /tmp/ttyd.sock true & \
+    curl -fsS --compressed --retry 10 --retry-all-errors --retry-delay 1 \
+        --unix-socket /tmp/ttyd.sock -o /usr/share/ttyd/index.html http://localhost/ \
+    && { echo "<script>"; cat /usr/share/ttyd/key-bar.js; echo "</script>"; } \
+        >> /usr/share/ttyd/index.html
+
 LABEL \
     org.opencontainers.image.title="Home Assistant App: Terminal & SSH" \
     org.opencontainers.image.description="Allow logging in remotely to Home Assistant using SSH" \

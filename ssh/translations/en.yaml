@@ -13,5 +13,8 @@ configuration:
   server:
     name: Server
     description: SSH Server configuration
+  web_terminal:
+    name: Web terminal
+    description: Web terminal configuration
 network:
   22/tcp: SSH Port

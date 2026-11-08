@@ -38,6 +38,8 @@ To paste text into the Web UI:
 
 1. Press SHIFT + INSERT.
 
+On phones and tablets, two rows of keys that most on-screen keyboards lack are shown below the web terminal: Esc, Tab, Ctrl, Alt, the arrow keys, Home, End, Page Up and Page Down. Ctrl and Alt apply to the next key you press: for example, tap CTRL and then C to stop a running command. The keys are not shown when you use a mouse. To hide them, turn off the `mobile_key_bar` option.
+
 The web terminal has screen reader support turned on. Screen readers read the text you type and new output as it appears. The visible rows of the terminal are also available as a list that you can read line by line with your screen reader's reading cursor. When a command prints a lot of output, the terminal stops reading it out after about 20 lines; use the reading cursor to read the rest.
 
 ### SSH Server Connection
@@ -66,6 +68,8 @@ password: ""
 apks: []
 server:
   tcp_forwarding: false
+web_terminal:
+  mobile_key_bar: true
 ```
 
 ### Option: `apks`
@@ -91,6 +95,14 @@ Some SSH server options.
 Specifies whether TCP port forwarding (-L -R etc.) is permitted or not.
 
 **Note**: _Enabling this option lowers the security of your SSH server! Nevertheless, this warning is debatable._
+
+### Option group `web_terminal`
+
+Some web terminal options.
+
+#### Option `mobile_key_bar`
+
+Shows the extra keys (Esc, Tab, Ctrl, Alt, arrows and more) below the web terminal on phones and tablets. On by default.
 
 ## Network
 
